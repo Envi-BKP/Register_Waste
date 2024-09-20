@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Sarabun", sans-serif;
+  color: navy;
+}
+body{
+  display: flex;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container{
+  max-width: 1100px;
+  width: 100%;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+ 
+}
+.container .line{
+  width: 100%;
+  border-top: 1px darkcyan;
+}
+.container .title{
+  font-size: 16px;
+  font-weight: 450;
+  text-align: center;
+  padding-bottom: 30px;
+  position: relative;
+  border: 1px solid rgb(66, 152, 209);
+  padding: 10px 0px;
+
+}
+.container form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+form .user-details .input-box{
+ width: calc(100% / 2-20px);
+ margin: 10px 0 12px 0;
+}
+.user-details .input-box .details{
+  font-weight: 500px;
+  margin-bottom: 5px;
+  display: block;
+}
+.user-details .input-box input{
+  height: 40px;
+  width: 100;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+  font-size: 15px;
+}
+form .user-details .waste_type{
+  margin-left: 15%; 
+  margin-top: 5px; 
+  margin-bottom: 5px;
+}
+.user-details .waste_type p{
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 20px;
+}
+.user-details .waste_type input{
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-top: 1em;
+  accent-color: green;
+  padding-bottom: 1em;
+}
+.user-details .waste_type label{
+  font-size: 17px;
+}
+form .user-details .attach_file{
+  margin-left: 15%; 
+  margin-top: 5px; 
+  margin-bottom: 5px;
+}
+form .user-details .attach_file label{
+  padding: 0 2px ;
+}
+form .user-details .attach_file input[type="file"]{
+  padding: 10px 30px ; 
+  cursor: pointer; 
+}
+form .user-details .attach_file input[type="checkbox"]{
+  margin-bottom: 10px;
+  margin-right: 10px;
+  height: 20px;
+  width: 25px;
+  cursor: pointer; 
+}
+form .user-details .signature{
+  width: 100%; 
+  text-align: right; 
+  padding: 40px 0;
+}
+form .user-details .signature input{
+  width: 200px; 
+  border: none; 
+  border-bottom: 1px dashed; 
+  padding: 0 20px; 
+  text-align: center;
+  font-size: 16px;
+}
+form .user-details .submit{
+  width: 100%; 
+  text-align: center; 
+  padding: 30px;
+  justify-content: center;
+}
+form .user-details .submit input{
+  width: 150px ; 
+  height: 40px; 
+  cursor: pointer; 
+  font-size: 20px; 
+  font-weight: bold; 
+  background-color: rgb(111, 206, 111); 
+  color: aliceblue; 
+  border: 1px;
+}
+.user-details .tag_info p{
+  padding-bottom: 10px;
+}
+::placeholder{
+  color: navy transparent;
+}
