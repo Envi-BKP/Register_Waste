@@ -193,46 +193,22 @@
 </div>  
 </body>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwswBRPGKoEGnj3AFGJMBMhTsH9eDqzZr6Danur1OBbBaGmKRYWNTTQXHk0rlWtyFHB-Q/exec';
-    const form = document.forms['ผลลงทะเบียน'];
-    
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        getFiles(); // เรียกใช้ฟังก์ชัน getFiles เมื่อส่งฟอร์ม
-        
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "บันทึกข้อมูลเรียบร้อยแล้ว",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        })
-        .catch(error => console.error('Error!', error.message));
-    });
-
     function getFiles() {
-        const f = document.getElementById('files');
-        const folderName = new Date().toISOString().split('T')[0]; // ตั้งชื่อโฟลเดอร์ตามวันที่
-        google.script.run.withSuccessHandler(folderId => {
-            [...f.files].forEach((file, i) => {
-                const fr = new FileReader();
-                fr.onload = (e) => {
-                    const data = e.target.result.split(",");
-                    const obj = {
-                        fileName: f.files[i].name,
-                        mimeType: data[0].match(/:(\w.+);/)[1],
-                        data: data[1],
-                        folderId: folderId // ส่ง ID ของโฟลเดอร์ที่สร้างขึ้น
-                    };
-                    google.script.run.saveFile(obj); // บันทึกไฟล์ในโฟลเดอร์ที่กำหนด
-                };
-                fr.readAsDataURL(file);
-            });
-            alert("upload เรียบร้อยแล้ว");
-        }).createFolder(folderName); // สร้างโฟลเดอร์ก่อน
+      var form = document.forms['ผลลงทะเบียน'];
+      var formData = new FormData(form);
+  
+      // ส่งข้อมูลฟอร์มผ่าน fetch API
+      fetch('YOUR_SCRIPT_URL', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.text())
+        .then(data => {
+          console.log(data);  // จัดการกับผลลัพธ์ที่ได้รับ
+          alert('การลงทะเบียนเสร็จสิ้น');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
