@@ -198,7 +198,7 @@
       var formData = new FormData(form);
   
       // ส่งข้อมูลฟอร์มผ่าน fetch API
-      fetch('YOUR_SCRIPT_URL', {
+      fetch('https://script.google.com/macros/s/AKfycbyn8GsRshRDD_tr9JubyqfTcWMCTWKgJzFXrlyMNS6vUIQoH_eQAir1lwihdvToGsdsCA/exec', {
         method: 'POST',
         body: formData
       }).then(response => response.text())
