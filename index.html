@@ -196,21 +196,41 @@
 </div>  
 </body>
 <script>
-    document.getElementById("dataForm").addEventListener("submit", async function (e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbyT4RNr1f-nmuOoTrtXjLotQSUhl3FlRh_bVri0yw91sxXqmSvrGzsxfVyIA3L2C2XAJQ/exec", {
-                method: "POST",
-                body: formData,
-            });
-            const result = await response.json();
-            alert(`สำเร็จ: ${result.message}\nโฟลเดอร์: ${result.folder}`);
-        } catch (error) {
-            console.error("Error:", error);
-            alert("เกิดข้อผิดพลาดในการส่งข้อมูล");
-        }
-    });
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwswBRPGKoEGnj3AFGJMBMhTsH9eDqzZr6Danur1OBbBaGmKRYWNTTQXHk0rlWtyFHB-Q/exec'
+    const form = document.forms['ผลลงทะเบียน']
+      
+    form.addEventListener('submit', e => {
+    e.preventDefault();
+        getFiles(); // เรียกใช้ฟังก์ชัน getFiles เมื่อส่งฟอร์ม
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+      
+    .catch(error => console.error('Error!', error.message))
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "บันทึกข้อมูลเรียบร้อยแล้ว",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
+
+    function getFiles() {
+const f = document.getElementById('files');
+[...f.files].forEach((file, i) => {
+  const fr = new FileReader();
+  fr.onload = (e) => {
+    const data = e.target.result.split(",");
+    const obj = {fileName: f.files[i].name, mimeType: data[0].match(/:(\w.+);/)[1], data: data[1]};
+    google.script.run.withSuccessHandler((id) => {
+      console.log(id);
+    }).saveFile(obj);
+  }
+  fr.readAsDataURL(file);
+});
+alert("upload เรียบร้อยแล้ว")
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
