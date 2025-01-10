@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>ขึ้นทะเบียนเป็นผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือในเขตท่าเรือกรุงเทพ</title>
+    <title>Document</title>
     
 </head>
 <body>
     <div class="container">
         <Div class="title"><h2>แบบคำร้องขอขึ้นทะเบียนเป็นผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือในเขตท่าเรือกรุงเทพ</h2></Div><br>
         <div class="division"></div>
-       
-    <form method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน" id="dataForm" enctype="multipart/form-data">
+    <form method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน">
         <div class="user-details">
             <div class="input-box">
                 <span class="details" style="text-decoration: underline;" >ข้าพเจ้า</span>
@@ -155,8 +154,7 @@
                 <input type="checkbox" name="ใบรับรองผู้ให้บริการ" value="สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า">สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า<br>
 
                 <span>Upload Files :</span>
-                    <input type="file" id="files" name="files" multiple>
-                    
+						    <input id="files" type="file" id="files" multiple>
                               
    
             </div> 
@@ -181,8 +179,7 @@
             </div>
             <br>
             <div class="submit">
-                <input class="pointer"  type="submit" onclick="getFiles" value="ลงทะเบียน">
-                
+                <input class="pointer"  type="submit" onclick=getFiles() value="ลงทะเบียน">
             </div>
             <div>
                 <button type="button" name="button" id="print" onclick="window.print();">print</button>
@@ -191,7 +188,7 @@
 
         </div>
         
-        <p id="demo"></p> 
+      <p id="demo"></p>   
     </form>
 </div>  
 </body>
@@ -239,6 +236,4 @@
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</html>
-
 </html>
