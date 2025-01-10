@@ -11,7 +11,8 @@
     <div class="container">
         <Div class="title"><h2>แบบคำร้องขอขึ้นทะเบียนเป็นผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือในเขตท่าเรือกรุงเทพ</h2></Div><br>
         <div class="division"></div>
-    <form method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน">
+       
+    <form method="post" accept-charset="UTF-8" autocomplete="off" name="dataForm" id="dataForm" enctype="multipart/form-data">
         <div class="user-details">
             <div class="input-box">
                 <span class="details" style="text-decoration: underline;" >ข้าพเจ้า</span>
@@ -154,7 +155,7 @@
                 <input type="checkbox" name="ใบรับรองผู้ให้บริการ" value="สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า">สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า<br>
 
                 <span>Upload Files :</span>
-						    <input id="files" type="file" id="files" multiple>
+                    <input type="file" id="files" name="files[]" multiple>
                               
    
             </div> 
@@ -188,46 +189,35 @@
 
         </div>
         
-      <p id="demo"></p>   
+        <p id="responseMessage"></p> 
     </form>
 </div>  
 </body>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyn8GsRshRDD_tr9JubyqfTcWMCTWKgJzFXrlyMNS6vUIQoH_eQAir1lwihdvToGsdsCA/exec'
-    const form = document.forms['ผลลงทะเบียน']
-      
-    form.addEventListener('submit', e => {
-    e.preventDefault();
-        getFiles(); // เรียกใช้ฟังก์ชัน getFiles เมื่อส่งฟอร์ม
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
-      
-    .catch(error => console.error('Error!', error.message))
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "บันทึกข้อมูลเรียบร้อยแล้ว",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    })
-
-    function getFiles() {
-const f = document.getElementById('files');
-[...f.files].forEach((file, i) => {
-  const fr = new FileReader();
-  fr.onload = (e) => {
-    const data = e.target.result.split(",");
-    const obj = {fileName: f.files[i].name, mimeType: data[0].match(/:(\w.+);/)[1], data: data[1]};
-    google.script.run.withSuccessHandler((id) => {
-      console.log(id);
-    }).saveFile(obj);
-  }
-  fr.readAsDataURL(file);
-});
-alert("upload เรียบร้อยแล้ว")
-}
+    document.getElementById("dataForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        try {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzsP7NQEDFNK_GmoNFUnjRUX0u19QEd8SmPCKRCmJYQQKxkxpd-zaBoYDH-eTIE1nRqRw/exec", {
+                method: "POST",
+                body: formData,
+            });
+            const result = await response.json();
+            Swal.fire({
+                icon: "success",
+                title: "ส่งข้อมูลสำเร็จ!",
+                text: result.message,
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "เกิดข้อผิดพลาด!",
+                text: "ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง",
+            });
+        }
+    });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>
