@@ -12,7 +12,7 @@
         <Div class="title"><h2>แบบคำร้องขอขึ้นทะเบียนเป็นผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือในเขตท่าเรือกรุงเทพ</h2></Div><br>
         <div class="division"></div>
        
-    <form method="post" accept-charset="UTF-8" autocomplete="off" name="dataForm" id="dataForm" enctype="multipart/form-data">
+    <form method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน" id="dataForm" enctype="multipart/form-data">
         <div class="user-details">
             <div class="input-box">
                 <span class="details" style="text-decoration: underline;" >ข้าพเจ้า</span>
@@ -155,7 +155,7 @@
                 <input type="checkbox" name="ใบรับรองผู้ให้บริการ" value="สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า">สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า<br>
 
                 <span>Upload Files :</span>
-                    <input type="file" id="uploadFiles" name="uploadFiles" multiple>
+                    <input type="file" id="files" name="files" multiple>
                     
                               
    
@@ -181,7 +181,7 @@
             </div>
             <br>
             <div class="submit">
-                <input class="pointer"  type="submit" value="ลงทะเบียน">
+                <input class="pointer"  type="submit" onclick="getFiles" value="ลงทะเบียน">
                 
             </div>
             <div>
@@ -191,12 +191,12 @@
 
         </div>
         
-        <p id="responseMessage"></p> 
+        <p id="demo"></p> 
     </form>
 </div>  
 </body>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwswBRPGKoEGnj3AFGJMBMhTsH9eDqzZr6Danur1OBbBaGmKRYWNTTQXHk0rlWtyFHB-Q/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzxEGRF7lPGvKiG-4Emw4CjSvGinC1FiPtO8bg86-qDnHMAgHOUQtWiVH2DWc9sutiVFQ/exec'
     const form = document.forms['ผลลงทะเบียน']
       
     form.addEventListener('submit', e => {
