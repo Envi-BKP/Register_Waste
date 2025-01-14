@@ -4,158 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
+   
     <title>Document</title>
     
 </head>
 <body>
     <div class="container">
         <Div class="title"><h2>แบบคำร้องขอขึ้นทะเบียนเป็นผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือในเขตท่าเรือกรุงเทพ</h2></Div><br>
-        <div class="division"></div>
-    <form method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน">
+        
+    <form onsubmit="return validateWasteType()" method="post" accept-charset="UTF-8" autocomplete="off" name="ผลลงทะเบียน">
         <div class="user-details">
             <div class="input-box">
                 <span class="details" style="text-decoration: underline;" >ข้าพเจ้า</span>
-                <input type="text" placeholder="ระบุชื่อ พร้อมคำนำหน้าชื่อ" id="ชื่อ" name="ชื่อ" style="width: 220px;" required>
+                <input type="text" placeholder="กรุณาระบุชื่อ พร้อมคำนำหน้าชื่อ" id="ชื่อ" name="ชื่อ" required>
             </div>
             <div class="input-box">
                 <span class="details">นามสกุล</span>
-                <input type="text" id="นามสกุล" name="นามสกุล"  style="width: 250px;" required>
+                <input type="text" id="นามสกุล" name="นามสกุล" placeholder="กรุณาระบุ นามสกุล"   required>
             </div> 
             <div class="input-box">   
                 <span class="details">ตำแหน่ง</span>
-                <input type="text" id="ตำแหน่ง" name="ตำแหน่ง" style="width: 230px;" required>
+                <input type="text" id="ตำแหน่ง" name="ตำแหน่ง" placeholder="กรุณาระบุ ตำแหน่ง" required>
             </div>   
             <div class="input-box">     
                 <span class="details">อายุ (ปี)</span>
-                <input type="text" id="อายุ" name="อายุ" style="width: 70px;" required>
+                <input type="number" id="อายุ" name="อายุ" min="18" max="100" placeholder="กรุณาระบุ อายุ" required>
             </div>
             <div class="input-box">         
                 <span class="details">สัญชาติ</span>
-                <input type="text" id="สัญชาติ" name="สัญชาติ" style="width: 200px;" required>
+                <input type="text" id="สัญชาติ" name="สัญชาติ" placeholder="กรุณาระบุ ชื่อประเทศสัญชาติ"  required>
             </div>
             <div class="input-box">  
                 <span class="details">ที่อยู่</span>
-                <input type="text" placeholder="ระบุบ้านเลขที่, ซอย, ถนน, ตำบล/แขวง, อำเภอ/เขต, จังหวัด" id="ที่อยู่" name="ที่อยู่" style="width: 1040px;" required>
+                <input type="text" placeholder="ระบุบ้านเลขที่, ซอย, ถนน, ตำบล/แขวง" id="ที่อยู่" name="ที่อยู่"  required>
+            </div>
+            <div class="input-box">  
+                <span class="details">อำเภอ/เขต</span>
+                <input type="text" placeholder="กรุณาระบุ อำเภอ/เขต" id="อำเภอ/เขต" name="อำเภอ/เขต"  required>
+            </div>  
+            <div class="input-box">  
+                <span class="details">จังหวัด</span>
+                <input type="text" placeholder="กรุณาระบุ จังหวัด" id="จังหวัด" name="จังหวัด"  required>
             </div> 
             <div class="input-box">  
                 <span class="details">รหัสไปรษณีย์</span>
-                <input type="text" id="ปณ" name="ปณ" style="width: 150px;" required>
+                <input type="text" id="ปณ" name="ปณ" pattern="^[0-9]{5}$" placeholder="กรุณากรอก รหัสไปรษณีย์ 5 หลัก" required>
             </div> 
             <div class="input-box">  
                 <span class="details">โทรศัพท์</span>
-                <input type="text" id="tell" name="tell" style="width: 250px;" required>
+                <input type="tel" id="tell" name="tell" placeholder="กรุณาระบุ เบอร์โทรศัพท์" required>
             </div>
             <div class="input-box">
                 <span class="details">โทรสาร</span>
-                <input type="text" id="fax" name="fax" style="width: 250px;" required>
+                <input type="tel" id="fax" name="fax" placeholder="กรุณาระบุ เบอร์ Fax (ถ้ามี)"   >
             </div>
             <div class="input-box">
                 <span class="details">e-mail</span>
-                <input type="text" id="e-mail" name="e-mail" style="width: 330px;" required>
+                <input type="email" id="e-mail" name="e-mail" placeholder="example@example.com" required>
             </div>
             <div class="waste_type">
               <p>มีความประสงค์ขอขึ้นทะเบียนผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ ประเภท</p>
-              <input type="checkbox" name="gabage" value="ขยะ และกากของเสียต่างๆ">ขยะ และกากของเสียต่างๆ<br>
+              <input type="checkbox" name="gabage" value="ขยะ และกากของเสียต่างๆ">  ขยะ และกากของเสียต่างๆ<br><br>
                 
-              <input type="checkbox" name="oil" value="น้ำมันใช้แล้ว น้ำปนน้ำมันหรือเคมีภัณฑ์และน้ำเสียต่างๆ">น้ำมันใช้แล้ว น้ำปนน้ำมันหรือเคมีภัณฑ์และน้ำเสียต่างๆ<br>
-               
+              <input type="checkbox" name="oil" value="น้ำมันใช้แล้ว น้ำปนน้ำมันหรือเคมีภัณฑ์และน้ำเสียต่างๆ">  น้ำมันใช้แล้ว น้ำปนน้ำมันหรือเคมีภัณฑ์และน้ำเสียต่างๆ<br>
+               <br>
             </div> 
             <div class="input-box">  
                 <span class="details" style="text-decoration: underline" >ของห้างหุ้นส่วนจำกัด/บริษัท</span>
-                <input type="text" placeholder="ระบุชื่อบริษัท" id="ชื่อบริษัท" name="ชื่อบริษัท" style="width: 1040px;" required>
+                <input type="text" placeholder="ระบุชื่อบริษัท" id="ชื่อบริษัท" name="ชื่อบริษัท"  required>
             </div> 
             <div class="input-box">  
                 <span class="details">ที่อยู่</span>
-                <input type="text" placeholder="ระบุเลขที่, ซอย, ถนน, ตำบล/แขวง, อำเภอ/เขต, จังหวัด" id="ที่อยู่_บ" name="ที่อยู่_บ" style="width: 1040px;" required>
-            </div> 
+                <input type="text" placeholder="ระบุเลขที่, ซอย, ถนน, ตำบล/แขวง" id="ที่อยู่_บ" name="ที่อยู่_บ" required>
+            </div>
+            <div class="input-box">  
+                <span class="details">อำเภอ/เขต</span>
+                <input type="text" placeholder="กรุณาระบุ อำเภอ/เขต" id="อำเภอ/เขต_บ" name="อำเภอ/เขต_บ"  required>
+            </div>  
+            <div class="input-box">  
+                <span class="details">จังหวัด</span>
+                <input type="text" placeholder="กรุณาระบุ จังหวัด" id="จังหวัด_บ" name="จังหวัด_บ"  required>
+            </div>  
             <div class="input-box">  
                 <span class="details">รหัสไปรษณีย์</span>
-                <input type="text" id="ปณ._บ" name="ปณ._บ" style="width: 150px;" required>
+                <input type="text" id="ปณ._บ" name="ปณ._บ" pattern="^[0-9]{5}$" placeholder="กรุณากรอกรหัสไปรษณีย์ 5 หลัก" required>
             </div> 
             <div class="input-box">  
                 <span class="details">โทรศัพท์</span>
-                <input type="text" id="tell_บ" name="tell_บ" style="width: 250px;" required>
+                <input type="tel" id="tell_บ" name="tell_บ" placeholder="กรุณาระบุ เบอร์โทรศัพท์" required>
             </div>
             <div class="input-box">
                 <span class="details">โทรสาร</span>
-                <input type="text" id="fax_บ" name="fax_บ" style="width: 250px;" required>
+                <input type="tel" id="fax_บ" name="fax_บ" placeholder="กรุณาระบุ เบอร์ Fax (ถ้ามี)" >
             </div>
             <div class="input-box">
                 <span class="details">e-mail</span>
-                <input type="text" id="e-mail_บ" name="e-mail_บ" style="width: 330px;" required>
+                <input type="email" id="e-mail_บ" name="e-mail_บ" placeholder="example@example.com" >
             </div>
-
-            <br>
+            
+            
 
             <div class="input-box">
-                <span class="details" style="text-decoration: underline">ได้มอบอำนาจให้ (ถ้ามี)</span>
-                <input type="text" placeholder="ระบุชื่อ พร้อมคำนำหน้าชื่อ" id="ชื่อ_รับมอบ" name="ชื่อ_รับมอบ" style="width: 220px;" >
+                <span class="details" style="text-decoration: underline" >ได้มอบอำนาจให้ (ถ้ามี)</span>
+                <input type="text" placeholder="ระบุชื่อ พร้อมคำนำหน้าชื่อ ผู้รับมอบอำนาจ" id="ชื่อ_รับมอบ" name="ชื่อ_รับมอบ" >
             </div>
             <div class="input-box">
                 <span class="details">นามสกุล</span>
-                <input type="text" id="นามสกุล_รับมอบ" name="นามสกุล_รับมอบ" style="width: 250px;" >
+                <input type="text" id="นามสกุล_รับมอบ" name="นามสกุล_รับมอบ" placeholder="นามสกุล ผู้รับมอบอำนาจ" >
             </div> 
             <div class="input-box">   
                 <span class="details">ตำแหน่ง</span>
-                <input type="text" id="ตำแหน่ง_รับมอบ" name="ตำแหน่ง_รับมอบ" style="width: 230px;" >
+                <input type="text" id="ตำแหน่ง_รับมอบ" name="ตำแหน่ง_รับมอบ" placeholder="ตำแหน่ง ผู้รับมอบอำนาจ" >
             </div>   
             <div class="input-box">     
                 <span class="details">อายุ (ปี)</span>
-                <input type="text" id="อายุ_รับมอบ" name="อายุ_รับมอบ" style="width: 70px;" >
+                <input type="number" id="อายุ_รับมอบ" name="อายุ_รับมอบ" placeholder="อายุ ผู้รับมอบอำนาจ"  min="18" max="100"  >
             </div>
             <div class="input-box">         
                 <span class="details">สัญชาติ</span>
-                <input type="text" id="สัญชาติ_รับมอบ" name="สัญชาติ_รับมอบ" style="width: 200px;" >
+                <input type="text" id="สัญชาติ_รับมอบ" name="สัญชาติ_รับมอบ" placeholder="สัญชาติ ผู้รับมอบอำนาจ" >
             </div>
             <div class="input-box">  
                 <span class="details">ที่อยู่</span>
-                <input type="text" placeholder="ระบุบ้านเลขที่, ซอย, ถนน, ตำบล/แขวง, อำเภอ/เขต, จังหวัด" id="ที่อยู่_รับมอบ" name="ที่อยู่_รับมอบ" style="width: 1040px;" >
+                <input type="text" placeholder="ระบุบ้านเลขที่, ซอย, ถนน, ตำบล/แขวง" id="ที่อยู่_รับมอบ" name="ที่อยู่_รับมอบ">
+            </div> 
+            <div class="input-box">  
+                <span class="details">อำเภอ/เขต</span>
+                <input type="text" placeholder="ระบุอำเภอ/เขต" id="อำเภอ_รับมอบ" name="อำเภอ_รับมอบ">
+            </div> 
+            <div class="input-box">  
+                <span class="details">จังหวัด</span>
+                <input type="text" placeholder="ระบุจังหวัด" id="จังหวัด_รับมอบ" name="จังหวัด_รับมอบ">
             </div> 
             <div class="input-box">  
                 <span class="details">รหัสไปรษณีย์</span>
-                <input type="text" id="ปณ._รับมอบ" name="ปณ._รับมอบ" style="width: 150px;" >
+                <input type="text" id="ปณ._รับมอบ" name="ปณ._รับมอบ" pattern="^[0-9]{5}$" placeholder="กรอกรหัสไปรษณีย์ 5 หลัก">
             </div> 
             <div class="input-box">  
                 <span class="details">โทรศัพท์</span>
-                <input type="text" id="tell_รับมอบ" name="tell_รับมอบ" style="width: 250px;" >
+                <input type="text" id="tell_รับมอบ" name="tell_รับมอบ" placeholder="ระบุ เบอร์โทรศัพท์" >
             </div>
             <div class="input-box">
                 <span class="details">โทรสาร</span>
-                <input type="text" id="fax_รับมอบ" name="fax_รับมอบ" style="width: 250px;" >
+                <input type="text" id="fax_รับมอบ" name="fax_รับมอบ" placeholder="ระบุ เบอร์ Fax (ถ้ามี)" >
             </div>
             <div class="input-box">
                 <span class="details">e-mail</span>
-                <input type="text" id="e-mail_รับมอบ" name="e-mail_รับมอบ" style="width: 330px;" >
+                <input type="email" id="e-mail_รับมอบ" name="e-mail_รับมอบ" placeholder="example@example.com" >
             </div>
 
-            <br>
-
-            <div>
-                <p style="margin-bottom: 5px; margin-top: 15; font-size: 17px;">เป็นผู้ดำเนินการประสานงานในการขอขึ้นทะเบียนกับท่าเรือกรุงเทพ</p>
-                <p style="text-indent: 4.3em;">พร้อมนี้ได้แนบเอกสารหลักฐานที่มีการประทับตราและผู้มีอำนาจลงนามประกอบคำร้องมาครบถ้วนตามประเภทที่ขอขึ้นทะเบียน ประกอบด้วย</p>
-
+            <div class="register_box">
+                <p>เป็นผู้ดำเนินการประสานงานในการขอขึ้นทะเบียนกับท่าเรือกรุงเทพ</p>
+                <p style="text-indent: 4.0em;">พร้อมนี้ได้แนบเอกสารหลักฐานที่มีการประทับตราและผู้มีอำนาจลงนามประกอบคำร้องมาครบถ้วนตามประเภทที่ขอขึ้นทะเบียน ประกอบด้วย</p>
             </div>  
-            <br>
+            
             <div class="attach_file">
-                <input type="checkbox" name="ทะเบียนบ้าน" value="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านผู้ขอขึ้นทะเบียน">สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านผู้ขอขึ้นทะเบียน<br>
+                <input type="checkbox" name="ทะเบียนบ้าน" value="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านผู้ขอขึ้นทะเบียน">  สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านผู้ขอขึ้นทะเบียน<br>
                 
 
-                <input type="checkbox" name="หนังสือมอบอำนาจ" value="หนังสือมอบอำนาจ">หนังสือมอบอำนาจ<br>
+                <input type="checkbox" name="หนังสือมอบอำนาจ" value="หนังสือมอบอำนาจ">  หนังสือมอบอำนาจ<br>
                 
 
-                <input type="checkbox" name="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ" value="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ">สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ<br>
+                <input type="checkbox" name="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ" value="สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ">   สำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้รับมอบอำนาจ<br>
                
 
-                <input type="checkbox" name="จดทะเบียนนิติบุคคล" value="สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล ที่มีอายุไม่เกิน 6 เดือน">สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล ที่มีอายุไม่เกิน 6 เดือน<br> 
+                <input type="checkbox" name="จดทะเบียนนิติบุคคล" value="สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล ที่มีอายุไม่เกิน 6 เดือน">  สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล ที่มีอายุไม่เกิน 6 เดือน<br> 
                 
-                <input type="checkbox" name="บัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล" value="สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล">สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล<br>
+                <input type="checkbox" name="บัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล" value="สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล">  สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจลงนามผูกพันนิติบุคคล<br>
                 
 
-                <input type="checkbox" name="ใบรับรองผู้ให้บริการ" value="สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า">สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า<br>
-
-                <span>Upload Files :</span>
-						    <input id="files" type="file" id="files" multiple>
+                <input type="checkbox" name="ใบรับรองผู้ให้บริการ" value="สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า">  สำเนาใบรับรองผู้ให้บริการจัดเก็บและบำบัดของเสียจากเรือ จากกรมเจ้าท่า<br>
+                <br>
+                <span style="color: red;">Upload Files :</span>
+						    <input id="files" type="file" id="files" multiple required>
                               
    
             </div> 
@@ -180,7 +201,7 @@
             </div>
             <br>
             <div class="submit">
-                <input class="pointer"  type="submit" onclick="getFiles()"  value="ลงทะเบียน">
+                <input class="pointer"  type="submit"   value="ลงทะเบียน">
             </div>
             <div>
                 <button type="button" name="button" id="print" onclick="window.print();">print</button>
@@ -193,39 +214,92 @@
     </form>
 </div>  
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwDW2u8HWklPqaLUwy6aUKKhQxw2lU5gDKL3ZqMJLoaMOzsCPFrtzXC86z0JPdVqPEbjw/exec'
-    const form = document.forms['ผลลงทะเบียน']
+    function validateWasteType() {
+       
+        const checkboxes = document.querySelectorAll('.waste_type input[type="checkbox"]');
       
-    form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      
-    .catch(error => console.error('Error!', error.message))
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "บันทึกข้อมูลเรียบร้อยแล้ว",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    })
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        if (!isChecked) {
+            Swal.fire({
+                icon: "error",
+                title: "ข้อผิดพลาด",
+                text: "กรุณาเลือกประเภทของเสียที่ขอขึ้นทะเบียน",
+            });
+            return false; 
+        }
+        return true; 
+    }
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwDW2u8HWklPqaLUwy6aUKKhQxw2lU5gDKL3ZqMJLoaMOzsCPFrtzXC86z0JPdVqPEbjw/exec';
+    const form = document.forms['ผลลงทะเบียน'];
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+
+        
+        if (!validateWasteType()) {
+            return; 
+        }
+        Swal.fire({
+            title: 'กำลังประมวลผล',
+            text: 'กรุณารอสักครู่...',
+            icon: 'info',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            willOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        
+        getFiles();
+
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "บันทึกข้อมูลเรียบร้อยแล้ว",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            })
+            .catch((error) => {
+                console.error('Error!', error.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "เกิดข้อผิดพลาด",
+                    text: "ไม่สามารถบันทึกข้อมูลได้",
+                });
+            });
+    });
 
     function getFiles() {
-const f = document.getElementById('files');
-[...f.files].forEach((file, i) => {
-  const fr = new FileReader();
-  fr.onload = (e) => {
-    const data = e.target.result.split(",");
-    const obj = {fileName: f.files[i].name, mimeType: data[0].match(/:(\w.+);/)[1], data: data[1]};
-    google.script.run.withSuccessHandler((id) => {
-      console.log(id);
-    }).saveFile(obj);
-  }
-  fr.readAsDataURL(file);
-});
-alert("upload เรียบร้อยแล้ว")
-}
+        const f = document.getElementById('files');
+        [...f.files].forEach((file, i) => {
+            const fr = new FileReader();
+            fr.onload = (e) => {
+                const data = e.target.result.split(",");
+                const obj = {
+                    fileName: f.files[i].name,
+                    mimeType: data[0].match(/:(\w.+);/)[1],
+                    data: data[1],
+                };
+                google.script.run
+                    .withSuccessHandler((id) => {
+                        console.log(id);
+                    })
+                    .saveFile(obj);
+            };
+            fr.readAsDataURL(file);
+        });
+        
+    }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</html>
 </html>
