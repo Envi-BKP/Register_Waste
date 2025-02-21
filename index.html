@@ -217,9 +217,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function validateWasteType() {
-       
+        // ค้นหา checkbox ภายใน div.waste_type
         const checkboxes = document.querySelectorAll('.waste_type input[type="checkbox"]');
-      
+        // ตรวจสอบว่ามีการเลือก checkbox อย่างน้อย 1 ตัว
         const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
         if (!isChecked) {
             Swal.fire({
@@ -227,20 +227,20 @@
                 title: "ข้อผิดพลาด",
                 text: "กรุณาเลือกประเภทของเสียที่ขอขึ้นทะเบียน",
             });
-            return false; 
+            return false; // หยุดการส่งฟอร์ม
         }
-        return true; 
+        return true; // อนุญาตให้ส่งฟอร์ม
     }
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwDW2u8HWklPqaLUwy6aUKKhQxw2lU5gDKL3ZqMJLoaMOzsCPFrtzXC86z0JPdVqPEbjw/exec';
     const form = document.forms['ผลลงทะเบียน'];
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); 
+        e.preventDefault(); // ป้องกันการส่งฟอร์มปกติ
 
-        
+        // เรียกใช้ validateWasteType() ก่อนดำเนินการ fetch
         if (!validateWasteType()) {
-            return; 
+            return; // หยุดการทำงานถ้า validateWasteType() คืนค่า false
         }
         Swal.fire({
             title: 'กำลังประมวลผล',
@@ -253,10 +253,10 @@
             }
         });
 
-        
+        // เรียกฟังก์ชัน getFiles() หลังจากผ่านการตรวจสอบ checkbox
         getFiles();
 
-        
+        // ส่งข้อมูลไปยัง Google Script
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
             .then(() => {
                 Swal.fire({
